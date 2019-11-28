@@ -1,6 +1,6 @@
 package be.syntra.java.advanced.linkedlist;
 
-public class MyLinkedList<E> implements MyList<E> {
+public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
     private LinkedNode<E> root;
     private int size;
 
@@ -9,7 +9,7 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     @Override
-    public void add(E e) {
+    public boolean add(E e) {
         LinkedNode<E> newNode = new LinkedNode<>(e, null);
         if(root != null) {
             LinkedNode<E> node = root;
@@ -21,6 +21,7 @@ public class MyLinkedList<E> implements MyList<E> {
             root = newNode;
         }
         size++;
+        return true;
     }
 
     @Override
@@ -122,5 +123,21 @@ public class MyLinkedList<E> implements MyList<E> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public E peek() {
+        return (root != null) ? root.getData() : null;
+    }
+
+    @Override
+    public E remove() {
+        if (root != null) {
+            LinkedNode<E> node = root;
+            root = root.getNext();
+            size--;
+            return node.getData();
+        }
+        return null;
     }
 }

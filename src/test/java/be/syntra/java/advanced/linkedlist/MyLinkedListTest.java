@@ -8,13 +8,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MyLinkedListTest {
     private MyLinkedList<String> list;
 
+    // MyCollection / MyList
+
     @Test
     void canAddToEmptyList() {
         // given
         givenAnEmptyList();
 
-        // when - then
-        Assertions.assertDoesNotThrow(() -> list.add("First"));
+        // when
+        boolean result = list.add(firstItem());
+
+        // then
+        assertTrue(result);
         assertEquals(1, list.size());
     }
 
@@ -24,10 +29,12 @@ public class MyLinkedListTest {
         givenAnEmptyList();
 
         // when
-        list.add("First");
-        list.add("Second");
+        boolean result1 = list.add("First");
+        boolean result2 = list.add("Second");
 
         // then
+        assertTrue(result1);
+        assertTrue(result2);
         assertEquals(2, list.size());
     }
 
@@ -243,6 +250,61 @@ public class MyLinkedListTest {
 
         // then
         assertEquals(0, list.size());
+    }
+
+    // MyQueue
+
+    @Test
+    void peekReturnsNullForEmptyList() {
+        // given
+        givenAnEmptyList();
+
+        // when
+        String result = list.peek();
+
+        // then
+        assertNull(result);
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    void peekReturnsFirstElement() {
+        // given
+        givenAListWithOneItem();
+
+        // when
+        String result = list.peek();
+
+        // then
+        assertEquals(firstItem(), result);
+        assertEquals(1, list.size());
+    }
+
+    @Test
+    void removeReturnsNullForEmptyList() {
+        // given
+        givenAnEmptyList();
+
+        // when
+        String result = list.remove();
+
+        // then
+        assertNull(result);
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    void removeReturnsFirstElement() {
+        // given
+        givenAListWithTwoItems();
+
+        // when
+        String result = list.remove();
+
+        // then
+        assertEquals(firstItem(), result);
+        assertEquals(1, list.size());
+        assertEquals(secondItem(), list.get(0));
     }
 
     // Helper methods
