@@ -1,6 +1,5 @@
 package be.syntra.java.advanced.linkedlist;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -169,6 +168,19 @@ public class MyLinkedListTest {
     }
 
     @Test
+    void canAddItemAtFirstIndexInEmptyList() {
+        // given
+        givenAnEmptyList();
+
+        // when
+        list.add(0, newItem());
+
+        // then
+        assertEquals(1, list.size());
+        assertEquals(newItem(), list.get(0));
+    }
+
+    @Test
     void canAddItemAtFirstIndex() {
         // given
         givenAListWithOneItem();
@@ -237,7 +249,7 @@ public class MyLinkedListTest {
         givenAnEmptyList();
 
         // when - then
-        assertThrows(IndexOutOfBoundsException.class, () -> list.add(1, newItem()));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(0, newItem()));
     }
 
     @Test
@@ -250,6 +262,7 @@ public class MyLinkedListTest {
 
         // then
         assertEquals(0, list.size());
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
     }
 
     // MyQueue

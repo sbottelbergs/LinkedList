@@ -11,7 +11,7 @@ public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
     @Override
     public boolean add(E e) {
         LinkedNode<E> newNode = new LinkedNode<>(e, null);
-        if(root != null) {
+        if (root != null) {
             LinkedNode<E> node = root;
             while (node.getNext() != null) {
                 node = node.getNext();
@@ -51,18 +51,15 @@ public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
 
     @Override
     public void set(int i, E e) {
-        if (i > size) {
+        if (i >= size) {
             throw new IndexOutOfBoundsException(i);
         }
-        if (root == null) {
-            root = new LinkedNode<>(e, null);
-        } else {
-            LinkedNode<E> node = root;
-            for (int count = 0; count < i; count++) {
-                node = node.getNext();
-            }
-            node.setData(e);
+
+        LinkedNode<E> node = root;
+        for (int count = 0; count < i; count++) {
+            node = node.getNext();
         }
+        node.setData(e);
     }
 
     @Override
@@ -110,7 +107,7 @@ public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
     public boolean contains(Object o) {
         if (root != null) {
             LinkedNode<E> node = root;
-            while(node != null) {
+            while (node != null) {
                 if (node.getData().equals(o)) {
                     return true;
                 }
