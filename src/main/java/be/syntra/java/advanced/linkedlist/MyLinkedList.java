@@ -10,7 +10,7 @@ public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
 
     @Override
     public boolean add(E e) {
-        LinkedNode<E> newNode = new LinkedNode<>(e, null);
+        LinkedNode<E> newNode = new LinkedNode<>(e);
         if (root != null) {
             LinkedNode<E> node = root;
             while (node.getNext() != null) {
@@ -29,7 +29,7 @@ public class MyLinkedList<E> implements MyList<E>, MyQueue<E> {
         if (i > size) {
             throw new IndexOutOfBoundsException(i);
         }
-        LinkedNode<E> newNode = new LinkedNode<>(e, null);
+        LinkedNode<E> newNode = new LinkedNode<>(e);
         if (root == null) {
             root = newNode;
         } else {
